@@ -1,0 +1,45 @@
+package com.betterprojectsfaster.tutorial.jhipsterdocker.repository;
+
+import com.betterprojectsfaster.tutorial.jhipsterdocker.domain.Shipment;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Spring Data JPA repository for the Shipment entity.
+ */
+@Repository
+public interface ShipmentRepository extends JpaRepository<Shipment, Long> {
+    @Query("select shipment from Shipment shipment where shipment.shippedBy.login = ?#{authentication.name}")
+    List<Shipment> findByShippedByIsCurrentUser();
+
+    default Optional<Shipment> findOneWithEagerRelationships(Long id) {
+        return this.findOneWithToOneRelationships(id);
+    }
+
+    default List<Shipment> findAllWithEagerRelationships() {
+        return this.findAllWithToOneRelationships();
+    }
+
+    default Page<Shipment> findAllWithEagerRelationships(Pageable pageable) {
+        return this.findAllWithToOneRelationships(pageable);
+    }
+
+    @Query(
+        value = "select shipment from Shipment shipment left join fetch shipment.order left join fetch shipment.shippedBy",
+        countQuery = "select count(shipment) from Shipment shipment"
+    )
+    Page<Shipment> findAllWithToOneRelationships(Pageable pageable);
+
+    @Query("select shipment from Shipment shipment left join fetch shipment.order left join fetch shipment.shippedBy")
+    List<Shipment> findAllWithToOneRelationships();
+
+    @Query(
+        "select shipment from Shipment shipment left join fetch shipment.order left join fetch shipment.shippedBy where shipment.id =:id"
+    )
+    Optional<Shipment> findOneWithToOneRelationships(@Param("id") Long id);
+}

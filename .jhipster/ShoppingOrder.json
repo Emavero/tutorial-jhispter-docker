@@ -1,0 +1,55 @@
+{
+  "annotations": {
+    "changelogDate": "20240527151323"
+  },
+  "applications": ["my_simple_shop"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "90",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "totalAmount",
+      "fieldType": "Float",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "ordered",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "ShoppingOrder",
+  "relationships": [
+    {
+      "otherEntityName": "productOrder",
+      "otherEntityRelationshipName": "overallOrder",
+      "relationshipName": "orders",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "buyer",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityField": "shippedAt",
+      "otherEntityName": "shipment",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "shipment",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

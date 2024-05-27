@@ -1,0 +1,30 @@
+{
+  "mySimpleShopApp": {
+    "product": {
+      "home": {
+        "title": "Products",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Product erstellen",
+        "createOrEditLabel": "Product erstellen oder bearbeiten",
+        "notFound": "Keine Products gefunden"
+      },
+      "created": "Product erstellt mit ID {{ param }}",
+      "updated": "Product aktualisiert mit ID {{ param }}",
+      "deleted": "Product gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Product {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Product"
+      },
+      "id": "ID",
+      "name": "Name",
+      "price": "Price",
+      "description": "Description",
+      "picture": "Picture",
+      "specification": "Specification",
+      "category": "Category",
+      "inventory": "Inventory"
+    }
+  }
+}

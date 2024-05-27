@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240527151123"
+  },
+  "applications": ["my_simple_shop"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "90",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "picture",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "specification",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "category",
+      "fieldType": "ProductCategory",
+      "fieldValues": "Laptop,Desktop,Phone,Tablet,Accessory"
+    },
+    {
+      "fieldName": "inventory",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "name": "Product",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

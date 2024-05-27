@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240527151523"
+  },
+  "applications": ["my_simple_shop"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "shippedAt",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Shipment",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "shoppingOrder",
+      "otherEntityRelationshipName": "shipment",
+      "relationshipName": "order",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "shippedBy",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

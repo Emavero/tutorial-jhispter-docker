@@ -1,0 +1,22 @@
+package com.betterprojectsfaster.tutorial.jhipsterdocker.domain;
+
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
+
+public class ShipmentTestSamples {
+
+    private static final Random random = new Random();
+    private static final AtomicLong longCount = new AtomicLong(random.nextInt() + (2 * Integer.MAX_VALUE));
+
+    public static Shipment getShipmentSample1() {
+        return new Shipment().id(1L);
+    }
+
+    public static Shipment getShipmentSample2() {
+        return new Shipment().id(2L);
+    }
+
+    public static Shipment getShipmentRandomSampleGenerator() {
+        return new Shipment().id(longCount.incrementAndGet());
+    }
+}
